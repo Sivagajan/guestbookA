@@ -8,32 +8,34 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Gästebuch von Teufelsrochen</h1>
-    
-    <form action="/insert" method="POST">
-        <div>
-            <label for="">Vorname: </label>
-            <input type="text" name="name" id="">
-        </div>
-        <div>
-            <label for="">Nachname: </label>
-            <input type="text" name="lastname">
-        </div>
-        <div>
-            <label for="">Email Adresse:</label>
-            <input type="text" name="email" id="">
-        </div>
-        <div>
-            <label for="">Schreibe uns</label>
-            <textarea name="entry" id="" cols="30" rows="10"></textarea>
-        </div>
-        <input type="submit" value="Abschicken">
-    </form>
-
-    <% if(error) { %>
-        <p class="error">hoppla da ist etwas schief gelaufen</p>
+    <div class="block">
+        <div class="left">
+        <h1>Gästebuch von Teufelsrochen</h1>
+        
+        <form action="/insert" method="POST">
+            <div class="formular">
+                <label for="">Vorname: </label>
+                <input class="text" type="text" name="name" id="">
+            
+                <label for="">Nachname: </label>
+                <input class="text" type="text" name="lastname">
+            
+                <label for="">Email Adresse:</label>
+                <input class="text" type="text" name="email" id="">
+        
+                <label for="">Schreibe uns</label>
+                <textarea class="text" name="entry" id="" cols="30" rows="10"></textarea>
+            </div>
+            <input class="button" type="submit" value="Abschicken">
+        </form>
+    </div>
+    <div class="right">
+        <% if(error) { %>
+            <p class="error">hoppla da ist etwas schief gelaufen</p>
         <%}%>
-    
+            
         <%- include('./partials/entry', {objbackup})%>
+    </div>
+</div>
 </body>
 </html>

@@ -1,8 +1,8 @@
 <% if (objbackup.length > 0) { %> 
     <h2>Gästebuch eintrag</h2>
     <% objbackup.forEach(( person ) => { %>
-        <div>
-            <p><%= person.name %> <%= person.lastname %></p>
+        <div class="eintrag">
+            <p class="name"><%= person.name %> <%= person.lastname %></p>
             <p><%= person.email %></p>
             <p><%= person.entry %></p>
         </div>
