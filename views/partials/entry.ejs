@@ -1,0 +1,14 @@
+<% if (guest.length > 0) { %> 
+    <h2>Meine liebesten Menschen.</h2>
+    <% guest.forEach(( person ) => { %>
+        <div>
+            <p><%= person.name %> <%= person.lastname %></p>
+            <p><%= person.email %></p>
+            <p><%= person.entry %></p>
+        </div>
+    <%})%>
+    
+    
+    <% } else {%>
+        <p>Du hast keine Freunde</p>
+        <%}%>

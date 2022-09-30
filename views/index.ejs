@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guestbook Teufelsrochen By Siva</title>
+</head>
+<body>
+    <h1>Gästebuch von Teufelsrochen</h1>
+    
+    <form action="/insert" method="POST">
+        <div>
+            <label for="">Vorname: </label>
+            <input type="text" name="name" id="">
+        </div>
+        <div>
+            <label for="">Nachname: </label>
+            <input type="text" name="lastname">
+        </div>
+        <div>
+            <label for="">Email Adresse:</label>
+            <input type="text" name="email" id="">
+        </div>
+        <div>
+            <label for="">Schreibe uns</label>
+            <textarea name="entry" id="" cols="30" rows="10"></textarea>
+        </div>
+        <input type="submit" value="Abschicken">
+    </form>
+
+    <% if(error) { %>
+        <p class="error">hoppla da ist etwas schief gelaufen</p>
+        <%}%>
+    
+        <%- include('partials/entry', {guest})%>
+</body>
+</html>
