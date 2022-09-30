@@ -11,8 +11,17 @@ app.set('view engine', 'ejs')
 app.use(express.static('./public'))
 app.use(express.urlencoded({extended: true}))
 
+let objbackup = {} 
+
+fs.readFile("./backup.json",(err,data) =>{
+    if(err) console.log(err)
+
+    objbackup = JSON.parse(data)
+})
+
 app.get('/', (_, res)=>{
-    res.render('index',{guest, error:null})
+
+    res.render('index',{objbackup, error:null})
 })
 
 app.post('/insert',
@@ -31,7 +40,7 @@ app.post('/insert',
 
         if(!errors.isEmpty()){
             console.log(errors)
-            return res.render('index', {guest, error:errors})
+            return res.render('index', {objbackup, error:errors})
         }
 /*      // Das gehört zu Guestbook A
         guest.push({
@@ -44,11 +53,11 @@ app.post('/insert',
 
     // Das gehört zu Guestbook B
 
-        let objbackup = {}
+        /* let objbackup = {}
         fs.readFile("./backup.json",(err,data) =>{
             if(err) console.log(err)
 
-            objbackup = JSON.parse(data)
+            objbackup = JSON.parse(data) */
 
             objbackup.push({name:req.body.name,
                 lastname:req.body.lastname,
@@ -63,9 +72,10 @@ app.post('/insert',
 
             res.render('index', {objbackup, error:null})
 
-        })
+        /* }) */
 
         // Guestbook B Ende
+
 
         //res.render('index', {objbackup, error:null})
 })
