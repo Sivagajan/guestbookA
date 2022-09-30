@@ -1,6 +1,7 @@
 import express from 'express'
 import {body, validationResult} from 'express-validator'
 import { guest } from './data.js'
+import fs from 'fs'
 
 const app = express()
 const PORT = 1989
@@ -25,21 +26,48 @@ app.post('/insert',
     body('entry').isLength({min:5, max:40})
                 .withMessage('etwas mehr text wäre wünschenswert'),
     (req, res) => {
+
         const errors = validationResult(req)
 
         if(!errors.isEmpty()){
             console.log(errors)
             return res.render('index', {guest, error:errors})
         }
-
+/*      // Das gehört zu Guestbook A
         guest.push({
             name:req.body.name,
             lastname:req.body.lastname,
             email:req.body.email,
             entry:req.body.entry
+        }) */
+
+
+    // Das gehört zu Guestbook B
+
+        let objbackup = {}
+        fs.readFile("./backup.json",(err,data) =>{
+            if(err) console.log(err)
+
+            objbackup = JSON.parse(data)
+
+            objbackup.push({name:req.body.name,
+                lastname:req.body.lastname,
+                email:req.body.email,
+                entry:req.body.entry})
+
+            let tojson = JSON.stringify(objbackup)
+
+            fs.writeFile('./backup.json',tojson,(err)=>{
+                if(err) console.log(err)
+            })
+
+            res.render('index', {objbackup, error:null})
+
         })
 
-        res.render('index', {guest, error:null})
+        // Guestbook B Ende
+
+        //res.render('index', {objbackup, error:null})
 })
 
 app.listen(PORT, console.log('Das Gästebuch existiert seit ', PORT, '(siehe design :D)'))

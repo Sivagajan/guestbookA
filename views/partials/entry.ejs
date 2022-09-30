@@ -1,6 +1,6 @@
-<% if (guest.length > 0) { %> 
-    <h2>Meine liebesten Menschen.</h2>
-    <% guest.forEach(( person ) => { %>
+<% if (objbackup.length > 0) { %> 
+    <h2>Gästebuch eintrag</h2>
+    <% objbackup.forEach(( person ) => { %>
         <div>
             <p><%= person.name %> <%= person.lastname %></p>
             <p><%= person.email %></p>
